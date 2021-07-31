@@ -39,3 +39,7 @@ bump-major:
 
 changelog:
 	git describe --abbrev=0 | xargs poetry run auto-changelog --tag-prefix v --unreleased --stdout --starting-commit
+
+black:
+	blackd 2> /dev/null &
+
