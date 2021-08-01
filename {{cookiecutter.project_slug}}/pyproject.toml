@@ -35,17 +35,26 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "*"
+python = ">=3.6"
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 click = "*"
 {%- endif %}
 
 [tool.poetry.dev-dependencies]
-coverage = "*"
 flake8 = "*"
 pylint = "*"
+{% if cookiecutter.use_pytest == 'y' -%}
 pytest = "*"
-sphinx = "*"
+pytest-cov = "*"
+{%- endif -%}
+{% raw %}
+black = {extras = ["d"], version = "*"}
+{% endraw %}
+isort = "*"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
 
 {% if cookiecutter.command_line_interface|lower == 'click' -%}
 [tool.poetry.scripts]
