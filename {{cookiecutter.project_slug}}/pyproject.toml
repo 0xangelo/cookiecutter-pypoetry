@@ -51,6 +51,7 @@ pytest-cov = "*"
 black = {extras = ["d"], version = "*"}
 {% endraw %}
 isort = "*"
+pre-commit = "*"
 
 [tool.isort]
 profile = "black"
