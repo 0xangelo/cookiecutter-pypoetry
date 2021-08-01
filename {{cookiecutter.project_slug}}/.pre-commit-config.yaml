@@ -41,13 +41,20 @@ repos:
       - id: trailing-whitespace         # Trims trailing whitespace.
         stages: [commit, push]
 
-    - repo: https://github.com/asottile/reorder_python_imports
-      rev: v2.3.5
+    - repo: https://github.com/pycqa/isort
+      rev: 5.8.0
       hooks:
-      - id: reorder-python-imports
+      - id: isort
+        name: isort (python)
         stages: [commit, push]
-        args: [--separate-relative]
-        exclude: ^experiments/
+      - id: isort
+        name: isort (cython)
+        types: [cython]
+        stages: [commit, push]
+      - id: isort
+        name: isort (pyi)
+        types: [pyi]
+        stages: [commit, push]
 
     - repo: https://gitlab.com/pycqa/flake8
       rev: 3.8.3
@@ -60,7 +67,6 @@ repos:
       hooks:
       - id: black
         stages: [commit, push]
-        language_version: python3.7
         args: [--check]
 
     - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
