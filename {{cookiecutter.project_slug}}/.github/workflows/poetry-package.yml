@@ -39,8 +39,8 @@ jobs:
         poetry install
     - name: Run pytest
       run: poetry run pytest
-
-{%- if cookiecutter.publishable == 'y' -%}
+  {%- if cookiecutter.publishable == 'y' -%}
+  
   publish:
     name: Publish
     needs: test
@@ -72,4 +72,4 @@ jobs:
       {% raw %}
       run: poetry publish --build --username ${{ secrets.PYPI_USERNAME }} --password ${{ secrets.PYPI_PASSWORD }}
       {% endraw %}
-{% endif %}
+  {% endif %}
